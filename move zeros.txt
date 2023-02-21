@@ -1,0 +1,66 @@
+int COUNT(int* nums,int numsSize);
+int COUNT(int* nums,int numsSize){
+    int count=0;
+    for(int i=0;i<numsSize;i++){
+        if(nums[i] == 0){
+            count++;
+        }
+    }
+    return count;
+}
+void moveZeroes(int* nums, int numsSize){
+     int count = COUNT(nums,numsSize);
+     if(numsSize==2 || numsSize==count){
+         if(nums[0] == 0 && numsSize==2){
+             int temp = nums[0];
+             nums[0] = nums[1];
+             nums[1] = temp;
+         }
+     }
+     else if(numsSize==3){
+       for(int i=0;i<numsSize;i++){
+           for(int j=0;j<numsSize-1-i;j++){
+               if(nums[j] > nums[j+1]){
+                   int temp = nums[j];
+                   nums[j] = nums[j+1];
+                   nums[j+1] = temp;
+               }
+           }
+       }
+       if(count==1){
+        int temp1 = nums[0];
+        nums[0] = nums[1];
+        nums[1] = temp1;
+        int temp2 = nums[1];
+        nums[1] = nums[2];
+        nums[2] = temp2;
+       }
+       else{
+           int temp = nums[2];
+           nums[2] = nums[0];
+           nums[0] = temp;
+       }
+     }
+     else if(numsSize>3){
+         printf("%d %d",count,numsSize);
+         int kount1=0;
+     for(int i=0;i<numsSize;i++){
+         if(kount1 == numsSize-count){
+             break;
+         }
+         if(nums[i] == 0 && i<=numsSize-2){
+             int m=i;
+             while(1){
+                 if(nums[m+1] != 0){
+                     break;
+                 }
+                 m++;
+             }
+             int temp = nums[m+1];
+             nums[m+1] = nums[i];
+             nums[i] = temp;
+         }
+         ++kount1;
+     }
+ }
+}
